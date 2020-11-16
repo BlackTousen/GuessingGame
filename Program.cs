@@ -50,6 +50,7 @@ namespace GuessingGame
                     {
                         if (number < secretNumber) { Console.WriteLine("Your guess was too low!"); }
                         else { Console.WriteLine("Your guess was too High!"); }
+                        if (chances - chance == 0) { Console.WriteLine($"The number was {secretNumber}"); }
                     }
 
                     // Console.WriteLine($"Your number: {number}");
