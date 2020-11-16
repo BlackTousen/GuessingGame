@@ -8,7 +8,7 @@ namespace GuessingGame
         {
             Console.WriteLine("Hello Moto!");
             Random r = new Random();
-            int secretNumber = r.Next(1, 100);
+            int secretNumber = r.Next(1, 101);
             int chance = 0;
             int chances = Level();
             Guess(chance, chances, secretNumber);
@@ -16,18 +16,32 @@ namespace GuessingGame
 
         static int Level()
         {
-            Console.Write("Select your difficulty! (Hard/Medium/Easy/Cheater): ");
-            string selection = Console.ReadLine();
-            int value = 8;
-            if (selection.ToLower() == "hard") { value = 4; return value; }
-            else if (selection.ToLower() == "medium") { value = 6; return value; }
-            else if (selection.ToLower() == "easy") { value = 8; return value; }
-            else if (selection.ToLower() == "cheater") { value = 10; return value; }
-            else
+            int value = 0;
+            while (value == 0)
             {
-                Console.WriteLine("Not a valid option.");
-                return Level();
+                Console.Write("Select your difficulty! (Hard/Medium/Easy/Cheater): ");
+                string selection = Console.ReadLine().ToLower();
+                switch (selection)
+                {
+                    case ("hard"):
+                        value = 4;
+                        break;
+                    case ("medium"):
+                        value = 6;
+                        break;
+                    case ("easy"):
+                        value = 8;
+                        break;
+                    case ("cheater"):
+                        value = 10;
+                        break;
+                    default:
+                        Console.WriteLine("Not a valid option.");
+                        value = 0;
+                        break;
+                }
             }
+            return value;
         }
         static void Guess(int chance, int chances, int secretNumber)
         {
@@ -53,7 +67,6 @@ namespace GuessingGame
                         if (chances - chance == 0) { Console.WriteLine($"The number was {secretNumber}"); }
                     }
 
-                    // Console.WriteLine($"Your number: {number}");
                 }
                 else
                 {
